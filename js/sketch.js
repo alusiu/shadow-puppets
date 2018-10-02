@@ -1,4 +1,4 @@
-var canvas, button, welcomeGreeting, welcomeMessage, player1, player2, verb;
+var button, canvas, player1, player2, verb, welcomeGreeting, welcomeMessage;
 
 function setup() {
   createCanvas(windowWidth, windowHeight);
@@ -24,15 +24,28 @@ function windowResized() {
 
 function startSession() {
 
-  player1 = getGif();
-  player2 = getGif();
-  
-  verb = getVerb();
+  button.remove();
+  welcomeGreeting.remove();
+  welcomeMessage.remove();
 
-  console.log(verb);
+  session(0);
 
 }
 
+function session(affirm) {
+
+  console.log(affirm);
+
+  player1 = getGif();
+  player2 = getGif();
+  verb = getVerb();
+
+  player1video = createVideo(['assets/'+player1+'.mov']);
+
+  console.log(player1);
+  console.log(verb);
+  console.log(player2);
+}
 function getVerb() {
 
   var x = verbList[Math.floor(Math.random()*verbList.length)];
@@ -42,6 +55,10 @@ function getVerb() {
 
 
 function getGif() {
+
+  var y = videoList[Math.floor(Math.random()*videoList.length)];
+
+  return y;
 
 }
 
