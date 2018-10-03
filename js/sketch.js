@@ -59,7 +59,7 @@ function session() {
   text(verb, width/2, height/2);
   //imgName = getGif();
   //img = createImg("../assets/"+imgName+".gif");  // Load the test image
-  img = createImg("../assets/bird-480x480.gif");  // Load the test image
+  img = createImg("../assets/bird-480x580.gif");  // Load the test image
   image(img);
   img.position(0,0);
 
