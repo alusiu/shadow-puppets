@@ -1,11 +1,7 @@
-var button, canvas, player1, player2, verb, welcomeGreeting, welcomeMessage;
+var button, canvas, fingers, playbutton, player1, player2, playing = true, verb, welcomeGreeting, welcomeMessage;
 
 function setup() {
   createCanvas(windowWidth, windowHeight);
-
-  button = createButton('I\'ve turned on my phone flashlight');
-  button.position(width/2 - 33, height/2, 65);
-  button.mousePressed(startSession);
 
   textAlign(CENTER);
   textSize(50);
@@ -15,6 +11,10 @@ function setup() {
 
   welcomeMessage = createElement('h4', 'To continue, please turn on the flashlight on your phone');
   welcomeMessage.position(welcomeGreeting.x, welcomeGreeting.y + 50 );
+
+  button = createButton('I\'ve turned on my phone flashlight');
+  button.position(width/2 - 33, height/2, 65);
+  button.mousePressed(startSession);
   
 }
 
@@ -35,17 +35,20 @@ function startSession() {
 function session(affirm) {
 
   console.log(affirm);
-
+  player1.position(canvas.x, canvas.y);
   player1 = getGif();
-  player2 = getGif();
-  verb = getVerb();
+  player1video = createVideo(['../assets/'+player1+'.mov', '../assets/'+player1+'.webm']);
 
-  player1video = createVideo(['assets/'+player1+'.mov']);
+  player2 = getGif();
+  player2video = createVideo(['../assets/'+player2+'.mov', '../assets/'+player2+'.webm']);
+
+  verb = getVerb();
 
   console.log(player1);
   console.log(verb);
   console.log(player2);
 }
+
 function getVerb() {
 
   var x = verbList[Math.floor(Math.random()*verbList.length)];
@@ -53,12 +56,10 @@ function getVerb() {
   return x;
 }
 
-
 function getGif() {
 
   var y = videoList[Math.floor(Math.random()*videoList.length)];
 
   return y;
-
 }
 
