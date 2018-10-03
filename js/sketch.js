@@ -19,7 +19,6 @@ function setup() {
 }
 
 function draw() {
-  
 }
 
 function startSession() {
@@ -35,18 +34,17 @@ function startSession() {
 function session(affirm) {
 
   img = createImg("../assets/bird-480x480.gif");  // Load the test image
-  image(img, 0, 0);
-  
-  //player1 = getGif();
-  //player1video = createVideo(['../assets/'+player1+'.gif']);
+  image(img);
+
+  img.position(0,0);
+  // img.size();
+  // player1 = getGif();
+  // player1video = createVideo(['../assets/'+player1+'.gif']);
 
   // player2 = getGif();
   // player2video = createVideo(['../assets/'+player2+'.mov', '../assets/'+player2+'.webm']);
 
   verb = getVerb();
-
-  console.log(verb);
-  console.log(img);
 }
 
 function getVerb() {
@@ -62,4 +60,7 @@ function getGif() {
 
   return gifName;
 }
-
+function windowResized() 
+{
+  resizeCanvas(windowWidth, windowHeight);
+}
