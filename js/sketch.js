@@ -1,7 +1,7 @@
-var button, canvas, img, playbutton, player, verb, step, timer = '', wait, welcomeGreeting, welcomeMessage;;
+var actionTimer, button, canvas, img, pause = 2, playbutton, player, verb, step, waitTimer, welcomeGreeting, welcomeMessage;;
 
 function setup() {
-  createCanvas(windowWidth, windowHeight);
+  createCanvas(windowWidth, displayHeight);
   textAlign(CENTER);
   textSize(50);
 
@@ -18,24 +18,37 @@ function setup() {
 }
 
 function draw() {
-
-  if (timer > 0){
-      background(220);
+  
+  if (waitTimer > 0){
+      background(255);
       textAlign(CENTER, CENTER);
       textSize(100);
-      text(timer, width/2, height/2);
+      text(waitTimer, width/2, height/2);
 
-      if (frameCount % 60 == 0 && timer > 0) { // if the frameCount is divisible by 60, then a second has passed. it will stop at 0
-        timer --;
+      if (frameCount % 60 == 0 && waitTimer > 0) { // if the frameCount is divisible by 60, then a second has passed. it will stop at 0
+        waitTimer --;
       }
-      if (timer > 0 && timer < 6) {
+      if (waitTimer > 0 && waitTimer < 6) {
         textSize(30);
         text("Get ready to hop in, you're next!", width/2, height*0.7);
       }
-      if (timer == 0) {
+      if (waitTimer == 0) {
         text("Get in there!", width/2, height*0.7);
         session();
-        noLoop();
+      }
+    }
+
+    if (actionTimer > 0 ){
+      textAlign(CENTER, BOTTOM);
+      background(255);
+      text(actionTimer, width/2, height/2);
+
+      if (frameCount % 60 == 0 && actionTimer > 0) { // if the frameCount is divisible by 60, then a second has passed. it will stop at 0
+        actionTimer --;
+      }
+      if (actionTimer == 0) {
+        img.remove();
+        waitSession();
       }
     }
     
@@ -46,10 +59,14 @@ function startSession() {
   button.remove();
   welcomeGreeting.remove();
   welcomeMessage.remove();
-  timer = Math.floor(Math.random()* 10) + 1;
 
-  return timer;
+  waitSession();
   
+}
+
+function waitSession () {
+  waitTimer = Math.floor(Math.random()* 5) + 1;
+  return waitTimer;
 }
 
 function session() {
@@ -59,12 +76,17 @@ function session() {
   text(verb, width/2, height/2);
   //imgName = getGif();
   //img = createImg("../assets/"+imgName+".gif");  // Load the test image
-  img = createImg("../assets/bird-480x480.gif");  // Load the test image
+  img = createImg("../assets/bird-480x580.gif");  // Load the test image
   image(img);
   img.position(0,0);
 
   verb = getVerb();
   text(verb,width/2, height*0.7);
+
+  actionTimer = Math.floor(Math.random()* 5) + 1;
+
+  return actionTimer;
+
 }
 
 function getVerb() {
@@ -83,7 +105,7 @@ function getGif() {
 
 function windowResized() 
 {
-  resizeCanvas(windowWidth, windowHeight);
+  resizeCanvas(windowWidth, displayHeight);
 }
 
 function waitTimer() {
