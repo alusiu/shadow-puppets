@@ -1,4 +1,4 @@
-var action = {'verb': '', 'timer' : ''}, button, canvas, pause = 2, puppet, puppetName, verb, waitTimer, welcomeGreeting, welcomeMessage;;
+var action = {'verb': '', 'timer' : ''}, button, canvas, endGameButton, endGame = false, instructions, pause = 2, pauseGame = false, puppet, puppetName, resumeGame, verb, waitTimer, welcomeGreeting, welcomeMessage;
 
 function setup() {
   createCanvas(windowWidth, displayHeight);
@@ -13,62 +13,105 @@ function setup() {
 
   button = createButton('I\'ve turned on my phone flashlight');
   button.position(width/2 - 33, height/2, 65);
+
   button.mousePressed(startSession);
   
 }
 
 function draw() {
   
-  if (waitTimer > 0){
+  if (pauseGame == true) {
+      if (puppet != null) {
+        puppet.remove();
+      }
+      waitTimer = 0;
+      action.timer = 0;
       background(255);
       textAlign(CENTER, CENTER);
-      textSize(100);
-      text(waitTimer, width/2, height/2);
+      textSize(50);
+      text('Here are the instructions!', width/2, height/3)
+      if (resumeGame == null) {
+        resumeGame = createButton('Okay got it, resume game!');
+        resumeGame.mousePressed(resumeGamePlay);
+      }
+      
+  } 
+  if (endGame == true) {
+    endGameButton.remove();
+    instructions.remove();
+    background(255);
+    text('Thanks for playing!', width/2, height/2);
+    noLoop();
+  } else {
+    if (waitTimer > 0){
+        background(255);
+        textAlign(CENTER, CENTER);
+        textSize(100);
+        text(waitTimer, width/2, height/2);
 
-      if (frameCount % 60 == 0 && waitTimer > 0) { // if the frameCount is divisible by 60, then a second has passed. it will stop at 0
-        waitTimer --;
+        if (frameCount % 60 == 0 && waitTimer > 0) { // if the frameCount is divisible by 60, then a second has passed. it will stop at 0
+          waitTimer --;
+        }
+        if (waitTimer > 0 && waitTimer < 6) {
+          textSize(30);
+          text("Get ready to hop in, you're next!", width/2, height*0.7);
+        }
+        if (waitTimer == 0) {
+          text("Get in there!", width/2, height*0.7);
+          session();
+        }
       }
-      if (waitTimer > 0 && waitTimer < 6) {
-        textSize(30);
-        text("Get ready to hop in, you're next!", width/2, height*0.7);
+      // if the action.timer is set, countDown;
+      if (action.timer > 0 ){
+        textAlign(CENTER, BOTTOM);
+        background(255);
+        text(action.verb +' for '+action.timer, width/2, height*0.98);
+      
+        if (frameCount % 60 == 0 && action.timer> 0) { // if the frameCount is divisible by 60, then a second has passed. it will stop at 0
+          action.timer --;
+        }
+        if (action.timer == 0) {
+          puppet.remove();
+          waitSession();
+        }
       }
-      if (waitTimer == 0) {
-        text("Get in there!", width/2, height*0.7);
-        session();
-      }
-    }
+}
 
-    if (action.timer > 0 ){
-      textAlign(CENTER, BOTTOM);
-      background(255);
-      text(action.verb +' for '+action.timer, width/2, height*0.98);
-    
-      if (frameCount % 60 == 0 && action.timer> 0) { // if the frameCount is divisible by 60, then a second has passed. it will stop at 0
-        action.timer --;
-      }
-      if (action.timer == 0) {
-        puppet.remove();
-        waitSession();
-      }
-    }
 }
 
 function startSession() {
+  // This is the instructions page 
 
   button.remove();
   welcomeGreeting.remove();
   welcomeMessage.remove();
 
-  waitSession();
-  
+  textAlign(CENTER, CENTER);
+  textSize(50);
+  text('Here are the instructions!', width/2, height/3)
+
+  button = createButton('Okay got it!');
+  button.position(width/2 - 33, height/2, 65);
+  button.mousePressed(waitSession); 
+
 }
 
 function waitSession () {
+  // this is the timer to get out of the page; 
+  if (endGameButton == null) {
+    endGameButton = createButton('End game', BOTTOM, RIGHT);
+    instructions = createButton('Instructions', BOTTOM, LEFT);
+    endGameButton.mouseClicked(exitGame);
+    instructions.mousePressed(instructionsPage);
+  }
+
+  button.remove();
   waitTimer = Math.floor(Math.random()* 7) + 3;
   return waitTimer;
 }
 
 function session() {
+  // this is the session where the user is given an action and a timer;
   background(255);
 
   puppetName = getGif(); // get the name of the gif randomly 
@@ -84,7 +127,11 @@ function session() {
   action = {'verb': verb, 'timer': timer};
 
   return action;
+}
 
+function instructionsPage() {
+  pauseGame = true;
+  return pauseGame;
 }
 
 function getVerb() {
@@ -104,4 +151,17 @@ function getGif() {
 function windowResized() 
 {
   resizeCanvas(windowWidth, displayHeight);
+}
+
+function exitGame() {
+   endGame = true;
+   return endGame;
+}
+
+function resumeGamePlay() {
+  resumeGame.remove();
+  resumeGame = null;
+  pauseGame = false;
+  waitSession();
+  return pauseGame;
 }
