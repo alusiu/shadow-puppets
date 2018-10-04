@@ -1,4 +1,4 @@
-var actionTimer, button, canvas, pause = 2, playbutton, player, puppet, puppetName, verb, step, waitTimer, welcomeGreeting, welcomeMessage;;
+var action = {'verb': '', 'timer' : ''}, button, canvas, pause = 2, puppet, puppetName, verb, waitTimer, welcomeGreeting, welcomeMessage;;
 
 function setup() {
   createCanvas(windowWidth, displayHeight);
@@ -38,20 +38,19 @@ function draw() {
       }
     }
 
-    if (actionTimer > 0 ){
+    if (action.timer > 0 ){
       textAlign(CENTER, BOTTOM);
       background(255);
-
-      text(actionTimer, width/2, height*0.98);
-      if (frameCount % 60 == 0 && actionTimer > 0) { // if the frameCount is divisible by 60, then a second has passed. it will stop at 0
-        actionTimer --;
+      text(action.verb +' for '+action.timer, width/2, height*0.98);
+    
+      if (frameCount % 60 == 0 && action.timer> 0) { // if the frameCount is divisible by 60, then a second has passed. it will stop at 0
+        action.timer --;
       }
-      if (actionTimer == 0) {
+      if (action.timer == 0) {
         puppet.remove();
         waitSession();
       }
     }
-    
 }
 
 function startSession() {
@@ -65,14 +64,13 @@ function startSession() {
 }
 
 function waitSession () {
-  waitTimer = Math.floor(Math.random()* 7) + 2;
+  waitTimer = Math.floor(Math.random()* 7) + 3;
   return waitTimer;
 }
 
 function session() {
   background(255);
-  textAlign(CENTER, CENTER);
-  textSize(100);
+
   puppetName = getGif(); // get the name of the gif randomly 
   puppet = createImg("../assets/"+puppetName+".gif");  // Load the image
   image(puppet);
@@ -80,23 +78,26 @@ function session() {
 
   verb = getVerb();
 
-  actionTimer = Math.floor(Math.random()* 5) + 1;
+  text(verb, 50, 50);
+  timer = Math.floor(Math.random()* 5) + 3;
 
-  return actionTimer;
+  action = {'verb': verb, 'timer': timer};
+
+  return action;
 
 }
 
 function getVerb() {
-  // randomly choose a verb from the verblist and return it to the session function
-  var v = verbList[Math.floor(Math.random()*verbList.length)];
-
+  // randomly choose an adverb the adverb list, append it to a verb that is randomly chosen from the verb list, and return it to the session function
+  var a = adverbList[Math.floor(Math.random()*adverbList.length)];
+  var v = a + ' ' + verbList[Math.floor(Math.random()*verbList.length)];
+  
   return v;
 }
 
 function getGif() {
   // randomly choose a gif from the gif title list and return it to the session function
   var gifName = videoList[Math.floor(Math.random()*videoList.length)];
-
   return gifName;
 }
 
