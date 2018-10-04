@@ -39,7 +39,7 @@ function draw() {
     }
 
     if (actionTimer > 0 ){
-      textAlign(CENTER, BOTTOM);
+      textAlign(LEFT, BOTTOM);
       background(255);
       text(actionTimer, width/2, height/2);
 
@@ -73,7 +73,6 @@ function session() {
   background(255);
   textAlign(CENTER, CENTER);
   textSize(100);
-  text(verb, width/2, height/2);
   //imgName = getGif();
   //img = createImg("../assets/"+imgName+".gif");  // Load the test image
   img = createImg("../assets/bird-480x580.gif");  // Load the test image
@@ -81,7 +80,6 @@ function session() {
   img.position(0,0);
 
   verb = getVerb();
-  text(verb,width/2, height*0.7);
 
   actionTimer = Math.floor(Math.random()* 5) + 1;
 
@@ -106,9 +104,4 @@ function getGif() {
 function windowResized() 
 {
   resizeCanvas(windowWidth, displayHeight);
-}
-
-function waitTimer() {
-  
-
 }
