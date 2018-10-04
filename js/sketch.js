@@ -19,6 +19,7 @@ function setup() {
 }
 
 function draw() {
+  // if the waitTimer is set, countDown
   
   if (pauseGame == true) {
       if (puppet != null) {
