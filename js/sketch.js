@@ -1,4 +1,4 @@
-var actionTimer, button, canvas, img, pause = 2, playbutton, player, verb, step, waitTimer, welcomeGreeting, welcomeMessage;;
+var actionTimer, button, canvas, pause = 2, playbutton, player, puppet, puppetName, verb, step, waitTimer, welcomeGreeting, welcomeMessage;;
 
 function setup() {
   createCanvas(windowWidth, displayHeight);
@@ -39,15 +39,15 @@ function draw() {
     }
 
     if (actionTimer > 0 ){
-      textAlign(LEFT, BOTTOM);
+      textAlign(CENTER, BOTTOM);
       background(255);
-      text(actionTimer, width/2, height/2);
 
+      text(actionTimer, width/2, height*0.98);
       if (frameCount % 60 == 0 && actionTimer > 0) { // if the frameCount is divisible by 60, then a second has passed. it will stop at 0
         actionTimer --;
       }
       if (actionTimer == 0) {
-        img.remove();
+        puppet.remove();
         waitSession();
       }
     }
@@ -65,7 +65,7 @@ function startSession() {
 }
 
 function waitSession () {
-  waitTimer = Math.floor(Math.random()* 5) + 1;
+  waitTimer = Math.floor(Math.random()* 7) + 2;
   return waitTimer;
 }
 
@@ -73,11 +73,10 @@ function session() {
   background(255);
   textAlign(CENTER, CENTER);
   textSize(100);
-  //imgName = getGif();
-  //img = createImg("../assets/"+imgName+".gif");  // Load the test image
-  img = createImg("../assets/bird-480x580.gif");  // Load the test image
-  image(img);
-  img.position(0,0);
+  puppetName = getGif(); // get the name of the gif randomly 
+  puppet = createImg("../assets/"+puppetName+".gif");  // Load the image
+  image(puppet);
+  puppet.position(0,0);
 
   verb = getVerb();
 
