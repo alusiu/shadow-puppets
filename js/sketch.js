@@ -5,6 +5,8 @@ function setup() {
   fill(255);
   background(20, 20, 20);
 
+  loadFont ('../css/fonts/windsor_condensed-webfont.woff');
+  textFont("windsor_condensedregular");
 
   welcomeGreeting = createElement('h1', 'Shadow Play', 100);
   // .style('color', 'white')
