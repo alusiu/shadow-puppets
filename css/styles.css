@@ -33,6 +33,7 @@ canvas {
 button {
     padding: 1.2em;
     font-size: 1.2em;
+    /* font-weight: 600; */
     border-radius: 50px;
     border: 0px solid white;
     color: #fff;

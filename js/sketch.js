@@ -51,6 +51,7 @@ function draw() {
       //}
   
       wait.timer = 0;
+      wait.pause = 0;
       action.timer = 0;
       background(	20, 20, 20);
       textAlign(CENTER, CENTER);
@@ -145,8 +146,10 @@ function startSession() {
 
 function waitSession () {
   // this is the timer to get out of the page; 
+  console.log(windowHeight);
   if (endGameButton == null) {
-    endGameButton = createButton('X', BOTTOM, RIGHT);
+    endGameButton = createButton('X', width.x, BOTTOM);
+    // endGameButton.position(windowWidth.x, windowHeight.y + windowHeight);
     endGameButton.mouseClicked(exitGame);
   } 
 
