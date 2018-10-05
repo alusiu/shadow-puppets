@@ -132,13 +132,14 @@ function startSession() {
 
   textAlign(CENTER, CENTER);
   textSize(width/4);
-  text('How to play', width/2, height/8);
+  text('How to play', width/2, height*0.1);
   textSize(width/15)
-  text('Wait your turn', width/2, height/7);
-  text('5...4...3..2..1..', width/2, height/6);
+  text('Wait your turn', width/2, height*1.15);
+  text('5...4...3...2...1...', width/2, height/6);
   text('Jump on stage!', width/2, height/5);
   text('Don\'t forget, YOU are the show!', width/2, height/4);
   text('Use your imagination and interact with your fellow performers.', width/2, height/3);
+
 
 
   button = createButton('Okay got it!');
