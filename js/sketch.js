@@ -56,9 +56,10 @@ function draw() {
       background(	20, 20, 20);
       textAlign(CENTER, CENTER);
       textSize(50);
-      text('Here are the instructions!', width/2, height/3)
+      text('How to play!', width/2, height*0.2)
       if (resumeGame == null) {
-        resumeGame = createButton('Okay got it, resume game!');
+        resumeGame = createButton('Resume');
+        resumeGame.position(width*0.7, height*0.875);
         resumeGame.mousePressed(resumeGamePlay);
       }
       
