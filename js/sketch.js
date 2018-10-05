@@ -101,10 +101,13 @@ function draw() {
       }
       // if the action.timer is set, countDown;
       if (action.timer > 0 ){
-        textAlign(CENTER, BOTTOM);
-        background(	20, 20, 20);
-        text(action.verb +' for '+action.timer, width/2, height*0.98);
-      
+        textAlign(CENTER, TOP);
+        textSize(80);
+        background(20, 20, 20);
+        text(action.timer, width/2, height*0.02);
+        textSize(40);
+        puppet.position(0, height/8.5);
+        text(action.verb, width/2, height*0.8);
         if (frameCount % 60 == 0 && action.timer> 0) { // if the frameCount is divisible by 60, then a second has passed. it will stop at 0
           action.timer --;
         }
@@ -133,8 +136,6 @@ function startSession() {
   text('Jump on stage!', width/2, height/1.5);
 
   button = createButton('Okay got it!');
-  console.log('hello!');
-  console.log(button.size().width);
   button.position(width/2 - (button.size().width/2), height/2);
   button.mousePressed(waitSession); 
 
@@ -143,12 +144,12 @@ function startSession() {
 function waitSession () {
   // this is the timer to get out of the page; 
   if (endGameButton == null) {
-    endGameButton = createButton('End game', BOTTOM, RIGHT);
+    endGameButton = createButton('X', BOTTOM, RIGHT);
     endGameButton.mouseClicked(exitGame);
   } 
 
   if (instructions == null) {
-    instructions = createButton('Instructions', BOTTOM, LEFT);
+    instructions = createButton('i', BOTTOM, LEFT);
     instructions.mousePressed(instructionsPage);
   }
   button.remove();
@@ -165,7 +166,6 @@ function session() {
   puppetName = getGif(); // get the name of the gif randomly 
   puppet = createImg("../assets/"+puppetName+".gif");  // Load the image
   image(puppet);
-  puppet.position(0,0);
   puppet.size(width,width);
 
   verb = getVerb();
@@ -199,6 +199,7 @@ function getGif() {
 
 function windowResized() 
 {
+  background(20,20,20);
   resizeCanvas(windowWidth, displayHeight);
 }
 
