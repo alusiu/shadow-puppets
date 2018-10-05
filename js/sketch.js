@@ -132,11 +132,14 @@ function startSession() {
 
   textAlign(CENTER, CENTER);
   textSize(width/4);
-  text('How to', width/2, height/7);
+  text('How to play', width/2, height/8);
   textSize(width/15)
-  text('Wait your turn', width/2, height/5);
-  text('5...4...3..2..1..', width/2, height/3);
-  text('Jump on stage!', width/2, height/1.5);
+  text('Wait your turn', width/2, height/7);
+  text('5...4...3..2..1..', width/2, height/6);
+  text('Jump on stage!', width/2, height/5);
+  text('Don\'t forget, YOU are the show!', width/2, height/4);
+  text('Use your imagination and interact with your fellow performers.', width/2, height/3);
+
 
   button = createButton('Okay got it!');
   button.position(width/2 - (button.size().width/2), height/2);
@@ -150,12 +153,12 @@ function waitSession () {
   if (endGameButton == null) {
     endGameButton = createButton('X', width*0.1, height/9);
     endGameButton.position(width*0.1, height*0.875);
-    endGameButton.mouseClicked(exitGame);
-  } 
+      endGameButton.mouseClicked(exitGame);
+    } 
 
-  if (instructions == null) {
-    instructions = createButton('i', BOTTOM, LEFT);
-    instructions.position(width*0.8, height*0.875);
+    if (instructions == null) {
+      instructions = createButton('i', BOTTOM, LEFT);
+      instructions.position(width*0.8, height*0.875);
     instructions.mousePressed(instructionsPage);
   }
   button.remove();
