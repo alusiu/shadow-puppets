@@ -27,9 +27,13 @@ h4 {
     position: fixed
 
 }
+<<<<<<< HEAD
 .button {
     color: #8E8C61;
 } 
+=======
+
+>>>>>>> 55df7b6bd4a82112664b4347870fe6b8be579ad4
 body {
     padding: 0; margin: 0;
 } 
@@ -39,6 +43,7 @@ canvas {
 button {
     padding: 1.2em;
     font-size: 1.2em;
+    /* font-weight: 600; */
     border-radius: 50px;
     border: 0px solid white;
     color: #fff;
