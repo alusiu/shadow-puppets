@@ -152,16 +152,6 @@ function waitSession () {
   // this is the timer to get out of the page; 
   console.log(windowHeight);
   if (endGameButton == null) {
-<<<<<<< HEAD
-    endGameButton = createButton('x', width*0.1, height/9);
-    endGameButton.position(width*0.025, height*0.875);
-    endGameButton.mouseClicked(exitGame);
-  } 
-
-  if (instructions == null) {
-    instructions = createButton('i', BOTTOM, LEFT);
-    instructions.position(width*0.85, height*0.875);
-=======
     endGameButton = createButton('X', width*0.1, height/9);
     endGameButton.position(width*0.1, height*0.875);
       endGameButton.mouseClicked(exitGame);
@@ -170,7 +160,6 @@ function waitSession () {
     if (instructions == null) {
       instructions = createButton('i', BOTTOM, LEFT);
       instructions.position(width*0.8, height*0.875);
->>>>>>> 017e542ff2e2e77312bb342d043a46018b087d81
     instructions.mousePressed(instructionsPage);
   }
   button.remove();
