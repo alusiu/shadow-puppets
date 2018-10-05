@@ -171,7 +171,6 @@ function startSession() {
 
 function waitSession () {
   // this is the timer to get out of the page; 
-  console.log(windowHeight);
   if (endGameButton == null) {
     endGameButton = createButton('x', width*0.1, height/9);
     endGameButton.position(width*0.05, height*0.875);
@@ -184,7 +183,10 @@ function waitSession () {
     instructions.mousePressed(instructionsPage);
   }
   button.remove();
-  wait.timer = Math.floor(Math.random()* 7) + 3;
+  wait.timer = Math.floor(Math.random()* 60) + 1;
+  while(wait.timer < 20) {
+    timer = Math.floor(Math.random()* 60) + 1;
+  }
   wait.pause = 3;
   wait.direction = direction[Math.floor(Math.random()*direction.length)];
   return wait;
@@ -202,7 +204,11 @@ function session() {
   verb = getVerb();
 
   text(verb, 50, 50);
-  timer = Math.floor(Math.random()* 5) + 3;
+  timer = Math.floor(Math.random()* 45) + 1;
+  
+  while(timer < 20) {
+    timer = Math.floor(Math.random()* 45) + 1;
+  }
 
   action = {'verb': verb, 'timer': timer};
 
