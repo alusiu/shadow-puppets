@@ -1,7 +1,7 @@
-var action = {'verb': '', 'timer' : ''}, button, canvas, direction = ['left', 'right'], endGameButton, endGame = false, hopIn, instructions, pause = 2, pauseGame = false, puppet, puppetName, resumeGame, verb, wait = {'timer': '', 'pause': '', 'direction': ''}, welcomeGreeting, welcomeMessage;
+var action = {'verb': '', 'timer' : ''}, button, canvas, candle, direction = ['left', 'right'], endGameButton, endGame = false, hopIn, instructions, pause = 2, pauseGame = false, puppet, puppetName, resumeGame, verb, wait = {'timer': '', 'pause': '', 'direction': ''}, welcomeGreeting, welcomeMessage;
 
 function setup() {
-  createCanvas(windowWidth, displayHeight);
+  createCanvas(displayWidth, displayHeight);
   fill(255);
   background(20, 20, 20);
 
@@ -13,13 +13,23 @@ function setup() {
   .style('text-align', 'center')
   .style('text-shadow', '3px 3px 9px rgba(255, 255, 0, 0.9)');
   
-  welcomeGreeting.position(width/2 - (welcomeGreeting.size().width/2), height/9);
+  welcomeGreeting.position(width/2 - ((welcomeGreeting.size().width)/2), height*0.01);
 
-  welcomeMessage = createElement('h4', 'To continue, please turn on the flashlight on your phone')
-  .style('color', 'white');
-  welcomeMessage.position(welcomeGreeting.x, welcomeGreeting.y + 100);
+  candle = createImg('../assets/candle.png');
+  image(candle);
+  candle.size(150, 211);
+  candle.position(width/2 - ((candle.size().width)/2) + 10, welcomeGreeting.y + welcomeGreeting.size().height + (candle.size().height/4));
+  
+  //candle.position(welcomeGreeting.x - (welcomeGreeting.size().height));
 
-  button = createButton('I\'ve turned on my phone flashlight', width - width/10)
+  welcomeMessage = createElement('h4', 'Please turn on your flashlight')
+  .style('color', 'white')
+  .style('text-align', 'center')
+  .style('font-size', '50px')
+  ;
+  welcomeMessage.position(width/2 - ((welcomeMessage.size().width)/2), candle.y + candle.size().height/1.5);
+
+  button = createButton('Let\'s play!', width - width/10)
   .style('padding', '25px')
   .style('font-size', '20px')
   .style('font-family', 'times new roman')
@@ -27,8 +37,8 @@ function setup() {
   .style('border', '2px solid white')
   .style('background-color', '#333333')
   .style('color', 'white');
-  //.style('font-color', 'white');
-  button.position(width/2, height* 0.75, width);
+ 
+  button.position(width/2 - ((button.size().width)/2), welcomeMessage.y + welcomeMessage.size().height + button.size().height);
 
   button.mousePressed(startSession);
   
@@ -119,6 +129,7 @@ function startSession() {
   // This is the instructions page 
 
   button.remove();
+  candle.remove();
   welcomeGreeting.remove();
   welcomeMessage.remove();
 
@@ -128,10 +139,12 @@ function startSession() {
   textSize(width/15)
   text('Wait your turn', width/2, height/5);
   text('5...4...3..2..1..', width/2, height/3);
-  text('Jump on stage!', width/2, height/1);
+  text('Jump on stage!', width/2, height/1.5);
 
   button = createButton('Okay got it!');
-  button.position(width/2 - 33, height/2, 65);
+  console.log('hello!');
+  console.log(button.size().width);
+  button.position(width/2 - (button.size().width/2), height/2);
   button.mousePressed(waitSession); 
 
 }
