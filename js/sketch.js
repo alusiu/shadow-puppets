@@ -2,17 +2,33 @@ var action = {'verb': '', 'timer' : ''}, button, canvas, direction = ['left', 'r
 
 function setup() {
   createCanvas(windowWidth, displayHeight);
-  textAlign(CENTER);
-  textSize(50);
+  fill(255);
+  background(20, 20, 20);
 
-  welcomeGreeting = createElement('h2', 'Welcome to puppeters', 100);
-  welcomeGreeting.position(width/2 - 50, height/5 - 50);
 
-  welcomeMessage = createElement('h4', 'To continue, please turn on the flashlight on your phone');
-  welcomeMessage.position(welcomeGreeting.x, welcomeGreeting.y + 50 );
+  welcomeGreeting = createElement('h1', 'Shadow Play', 100)
+  .style('color', 'white')
+  .style('font-size', '72px')
+  .style('font-family', 'Arial open-sans')
+  .style('text-align', 'center')
+  .style('text-shadow', '3px 3px 9px rgba(255, 255, 0, 0.9)');
+  
+  welcomeGreeting.position(width/2 - (welcomeGreeting.size().width/2), height/9);
 
-  button = createButton('I\'ve turned on my phone flashlight');
-  button.position(width/2 - 33, height/2, 65);
+  welcomeMessage = createElement('h4', 'To continue, please turn on the flashlight on your phone')
+  .style('color', 'white');
+  welcomeMessage.position(welcomeGreeting.x, welcomeGreeting.y + 100);
+
+  button = createButton('I\'ve turned on my phone flashlight', width - width/10)
+  .style('padding', '25px')
+  .style('font-size', '20px')
+  .style('font-family', 'times new roman')
+  .style('border-radius', '15px')
+  .style('border', '2px solid white')
+  .style('background-color', '#333333')
+  .style('color', 'white');
+  //.style('font-color', 'white');
+  button.position(width/2, height* 0.75, width);
 
   button.mousePressed(startSession);
   
@@ -33,7 +49,7 @@ function draw() {
   
       wait.timer = 0;
       action.timer = 0;
-      background(255);
+      background(	20, 20, 20);
       textAlign(CENTER, CENTER);
       textSize(50);
       text('Here are the instructions!', width/2, height/3)
@@ -49,12 +65,12 @@ function draw() {
     if (puppet != null) {
       puppet.remove();
     }
-    background(255);
+    background(	20, 20, 20);
     text('Thanks for playing!', width/2, height/2);
     noLoop();
   } else {
      if (wait.timer > 0){
-        background(255);
+        background(	20, 20, 20);
         textAlign(CENTER, CENTER);
         textSize(100);
         text(wait.timer, width/2, height/2);
@@ -69,11 +85,11 @@ function draw() {
       } 
       if (wait.timer == 0) {
         if (wait.pause > 0) {
-          background(255);
+          background(	20, 20, 20);
           textAlign(CENTER, CENTER);
           textSize(50);
-          text('Get in there!', width/2, height/3);
-          text('Enter stage ' + wait.direction, width/2, height/2);
+          text('Get in there!', width/2, height/3).fill(255);
+          text('Enter stage ' + wait.direction, width/2, height/2).fill(255);
           if (frameCount % 60 == 0 && wait.pause > 0) { // if the f	rameCount is divisible by 60, then a second has passed. it will stop at 0
             wait.pause --;
           }
@@ -85,7 +101,7 @@ function draw() {
       // if the action.timer is set, countDown;
       if (action.timer > 0 ){
         textAlign(CENTER, BOTTOM);
-        background(255);
+        background(	20, 20, 20);
         text(action.verb +' for '+action.timer, width/2, height*0.98);
       
         if (frameCount % 60 == 0 && action.timer> 0) { // if the frameCount is divisible by 60, then a second has passed. it will stop at 0
@@ -107,8 +123,12 @@ function startSession() {
   welcomeMessage.remove();
 
   textAlign(CENTER, CENTER);
-  textSize(50);
-  text('Here are the instructions!', width/2, height/3)
+  textSize(width/4);
+  text('How to', width/2, height/7);
+  textSize(width/15)
+  text('Wait your turn', width/2, height/5);
+  text('5...4...3..2..1..', width/2, height/3);
+  text('Jump on stage!', width/2, height/1);
 
   button = createButton('Okay got it!');
   button.position(width/2 - 33, height/2, 65);
@@ -136,7 +156,7 @@ function waitSession () {
 
 function session() {
   // this is the session where the user is given an action and a timer;
-  background(255);
+  background(	20, 20, 20);
 
   puppetName = getGif(); // get the name of the gif randomly 
   puppet = createImg("../assets/"+puppetName+".gif");  // Load the image
