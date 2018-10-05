@@ -19,19 +19,17 @@ function setup() {
 
   candle = createImg('../assets/candle.png');
   image(candle);
-  candle.size(150, 211);
-  candle.position(width/2 - ((candle.size().width)/2) + 10, welcomeGreeting.y + welcomeGreeting.size().height+ 10);
-  
-  //candle.position(welcomeGreeting.x - (welcomeGreeting.size().height));
+  candle.size(120, 169);
+  candle.position(width/2 - ((candle.size().width)/2) + 10, welcomeGreeting.y + welcomeGreeting.size().height*0.875);
 
   welcomeMessage = createElement('h4', 'Please turn on your flashlight');
 
   welcomeMessage.position(width/2 - ((welcomeMessage.size().width)/2), candle.y + candle.size().height/1.3 +  10);
 
   button = createButton('Let\'s play!', width - width/10);
+
  
- 
-  button.position(width/2 - ((button.size().width)/2), welcomeMessage.y + welcomeMessage.size().height + button.size().height);
+  button.position(width/2 - ((button.size().width)/2) + 10, welcomeMessage.y + welcomeMessage.size().height + button.size().height);
 
   button.mousePressed(startSession);
   
@@ -39,7 +37,7 @@ function setup() {
 
 function draw() {
   // if the waitimer is set, countDown
-  
+
   if (pauseGame == true) {
       if (puppet != null) {
         puppet.remove();
@@ -106,12 +104,12 @@ function draw() {
       // if the action.timer is set, countDown;
       if (action.timer > 0 ){
         textAlign(CENTER, TOP);
-        textSize(80);
+        textSize(75);
         background(20, 20, 20);
-        text(action.timer, width/2, height*0.02);
+        text(action.timer, width/2, height*0.0275);
         textSize(40);
-        puppet.position(0, height/8.5);
-        text(action.verb, width/2, height*0.8);
+        puppet.position(0, height*0.15);
+        text(action.verb, width/2, height*0.75);
         if (frameCount % 60 == 0 && action.timer> 0) { // if the frameCount is divisible by 60, then a second has passed. it will stop at 0
           action.timer --;
         }
@@ -153,9 +151,9 @@ function waitSession () {
   // this is the timer to get out of the page; 
   console.log(windowHeight);
   if (endGameButton == null) {
-    endGameButton = createButton('X', width*0.1, height/9);
-    endGameButton.position(width*0.1, height*0.875);
-      endGameButton.mouseClicked(exitGame);
+    endGameButton = createButton('x', width*0.1, height/9);
+    endGameButton.position(width*0.05, height*0.875);
+    endGameButton.mouseClicked(exitGame);
     } 
 
     if (instructions == null) {
