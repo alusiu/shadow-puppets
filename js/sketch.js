@@ -6,37 +6,28 @@ function setup() {
   background(20, 20, 20);
 
 
-  welcomeGreeting = createElement('h1', 'Shadow Play', 100)
-  .style('color', 'white')
-  .style('font-size', '72px')
-  .style('font-family', 'Arial open-sans')
-  .style('text-align', 'center')
-  .style('text-shadow', '3px 3px 9px rgba(255, 255, 0, 0.9)');
+  welcomeGreeting = createElement('h1', 'Shadow Play', 100);
+  // .style('color', 'white')
+  // .style('font-size', '72px')
+  // .style('font-family', 'Arial open-sans')
+  // .style('text-align', 'center')
+  // .style('text-shadow', '3px 3px 9px rgba(255, 255, 0, 0.9)');
   
-  welcomeGreeting.position(width/2 - ((welcomeGreeting.size().width)/2), height*0.01);
+  welcomeGreeting.position(width/2 - ((welcomeGreeting.size().width)/2), height*0.02);
 
   candle = createImg('../assets/candle.png');
   image(candle);
   candle.size(150, 211);
-  candle.position(width/2 - ((candle.size().width)/2) + 10, welcomeGreeting.y + welcomeGreeting.size().height + (candle.size().height/4));
+  candle.position(width/2 - ((candle.size().width)/2) + 10, welcomeGreeting.y + welcomeGreeting.size().height+ 10);
   
   //candle.position(welcomeGreeting.x - (welcomeGreeting.size().height));
 
-  welcomeMessage = createElement('h4', 'Please turn on your flashlight')
-  .style('color', 'white')
-  .style('text-align', 'center')
-  .style('font-size', '50px')
-  ;
-  welcomeMessage.position(width/2 - ((welcomeMessage.size().width)/2), candle.y + candle.size().height/1.5);
+  welcomeMessage = createElement('h4', 'Please turn on your flashlight');
 
-  button = createButton('Let\'s play!', width - width/10)
-  .style('padding', '25px')
-  .style('font-size', '20px')
-  .style('font-family', 'times new roman')
-  .style('border-radius', '15px')
-  .style('border', '2px solid white')
-  .style('background-color', '#333333')
-  .style('color', 'white');
+  welcomeMessage.position(width/2 - ((welcomeMessage.size().width)/2), candle.y + candle.size().height/1.3 +  10);
+
+  button = createButton('Let\'s play!', width - width/10);
+ 
  
   button.position(width/2 - ((button.size().width)/2), welcomeMessage.y + welcomeMessage.size().height + button.size().height);
 

@@ -1,8 +1,16 @@
 html, body {
     height: 100%;
     color: #fff;
+    text-align: center;    
     /* font-family: ''; */
-
+}
+h1 {
+    font-size: 5.5em;
+    text-shadow: 3px 3px 9px rgba(255, 255, 0, 0.9);
+    margin:0;
+}
+h4 {
+    font-size: 2.4em;
 }
 .button {
     color: red;
@@ -13,9 +21,11 @@ body {
 canvas {
     vertical-align: top;
 } 
-input[type="button"] {
-    background-color:#333;
-    padding: 10px;
-    border: #fff;
-    border-radius: 5px;
+button {
+    padding: 1.2em;
+    font-size: 1.2em;
+    border-radius: 15px;
+    border: 2px solid white;
+    color: #fff;
+    background-color: #333;
 }
