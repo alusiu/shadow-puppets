@@ -130,19 +130,26 @@ function startSession() {
   welcomeMessage.remove();
 
   textAlign(CENTER, CENTER);
-  textSize(width/4);
+  textSize(width/5);
   text('How to play', width/2, height*0.1);
   textSize(width/15)
-  text('Wait your turn', width/2, height*1.15);
-  text('5...4...3...2...1...', width/2, height/6);
-  text('Jump on stage!', width/2, height/5);
-  text('Don\'t forget, YOU are the show!', width/2, height/4);
-  text('Use your imagination and interact with your fellow performers.', width/2, height/3);
+  text('Wait your turn', width/2, height*0.175);
+  text('\~', width/2, height*0.225);
+  text('5...4...3...2...1...', width/2, height*0.275);
+  text('\~', width/2, height*0.325);
+  text('Jump on stage!', width/2, height*0.375);
+  text('\~', width/2, height*0.425);
+  text('Don\'t forget, YOU are the show!', width/2, height*0.475);
+  text('\~', width/2, height*0.525);
+  text('Use your imagination', width/2, height*0.575);
+  text('\~', width/2, height*0.625);
+  text('And interact with your fellow performers.', width/2, height*0.675);
+  text('\~', width/2, height*0.725);
+  text('Because teamwork makes the dreamwork!', width/2, height*0.775);
 
 
-
-  button = createButton('Okay got it!');
-  button.position(width/2 - (button.size().width/2), height/2);
+  button = createButton('Break a leg!');
+  button.position(width/2 - (button.size().width/2), height*0.85);
   button.mousePressed(waitSession); 
 
 }
