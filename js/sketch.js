@@ -175,6 +175,7 @@ function session() {
   puppet = createImg("../assets/"+puppetName+".gif");  // Load the image
   image(puppet);
   puppet.position(0,0);
+  puppet.size(width,width);
 
   verb = getVerb();
 
