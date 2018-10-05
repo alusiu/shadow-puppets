@@ -56,9 +56,10 @@ function draw() {
       background(	20, 20, 20);
       textAlign(CENTER, CENTER);
       textSize(50);
-      text('Here are the instructions!', width/2, height/3)
+      text('How to play!', width/2, height*0.2)
       if (resumeGame == null) {
-        resumeGame = createButton('Okay got it, resume game!');
+        resumeGame = createButton('Resume');
+        resumeGame.position(width*0.7, height*0.875);
         resumeGame.mousePressed(resumeGamePlay);
       }
       
@@ -148,14 +149,14 @@ function waitSession () {
   // this is the timer to get out of the page; 
   console.log(windowHeight);
   if (endGameButton == null) {
-    endGameButton = createButton('X', width*0.1, height/9);
-    endGameButton.position(width*0.1, height*0.875);
+    endGameButton = createButton('x', width*0.1, height/9);
+    endGameButton.position(width*0.025, height*0.875);
     endGameButton.mouseClicked(exitGame);
   } 
 
   if (instructions == null) {
     instructions = createButton('i', BOTTOM, LEFT);
-    instructions.position(width*0.8, height*0.875);
+    instructions.position(width*0.85, height*0.875);
     instructions.mousePressed(instructionsPage);
   }
   button.remove();
