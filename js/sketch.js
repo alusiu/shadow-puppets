@@ -37,6 +37,7 @@ function setup() {
 
 function draw() {
   // if the waitimer is set, countDown
+  // background(20,20,20);
 
   if (pauseGame == true) {
       if (puppet != null) {
@@ -53,8 +54,23 @@ function draw() {
       action.timer = 0;
       background(	20, 20, 20);
       textAlign(CENTER, CENTER);
-      textSize(50);
-      text('How to play!', width/2, height*0.2)
+      textSize(width/5);
+      text('How to play', width/2, height*0.1);
+      textSize(width/15)
+      text('Wait your turn', width/2, height*0.175);
+      text('\~', width/2, height*0.225);
+      text('5...4...3...2...1...', width/2, height*0.275);
+      text('\~', width/2, height*0.325);
+      text('Jump on stage!', width/2, height*0.375);
+      text('\~', width/2, height*0.425);
+      text('Don\'t forget, YOU are the show!', width/2, height*0.475);
+      text('\~', width/2, height*0.525);
+      text('Use your imagination', width/2, height*0.575);
+      text('\~', width/2, height*0.625);
+      text('And interact with your fellow performers.', width/2, height*0.675);
+      text('\~', width/2, height*0.725);
+      text('Because teamwork makes the dreamwork!', width/2, height*0.775);
+    
       if (resumeGame == null) {
         resumeGame = createButton('Resume');
         resumeGame.position(width*0.7, height*0.875);
@@ -68,7 +84,6 @@ function draw() {
     if (puppet != null) {
       puppet.remove();
     }
-    background(	20, 20, 20);
     text('Thanks for playing!', width/2, height/2);
     noLoop();
   } else {
@@ -106,7 +121,7 @@ function draw() {
         textAlign(CENTER, TOP);
         textSize(75);
         background(20, 20, 20);
-        text(action.timer, width/2, height*0.0275);
+        text(action.timer, width/2, height*0.03);
         textSize(40);
         puppet.position(0, height*0.15);
         text(action.verb, width/2, height*0.75);
@@ -123,12 +138,12 @@ function draw() {
 
 function startSession() {
   // This is the instructions page 
-
+  //background(20,20,20);
   button.remove();
   candle.remove();
   welcomeGreeting.remove();
   welcomeMessage.remove();
-
+ 
   textAlign(CENTER, CENTER);
   textSize(width/5);
   text('How to play', width/2, height*0.1);
@@ -211,12 +226,6 @@ function getGif() {
   // randomly choose a gif from the gif title list and return it to the session function
   var gifName = videoList[Math.floor(Math.random()*videoList.length)];
   return gifName;
-}
-
-function windowResized() 
-{
-  background(20,20,20);
-  resizeCanvas(windowWidth, displayHeight);
 }
 
 function exitGame() {

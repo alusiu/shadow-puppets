@@ -32,6 +32,8 @@ body {
 } 
 canvas {
     vertical-align: top;
+    background: rgb(20,20,20);
+
 } 
 button {
     padding: 1.2em;
