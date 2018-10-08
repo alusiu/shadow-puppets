@@ -183,10 +183,8 @@ function waitSession () {
     instructions.mousePressed(instructionsPage);
   }
   button.remove();
-  wait.timer = Math.floor(Math.random()* 60) + 1;
-  while(wait.timer < 20) {
-    timer = Math.floor(Math.random()* 60) + 1;
-  }
+  wait.timer = Math.floor(Math.random()* 40) + 20;
+
   wait.pause = 3;
   wait.direction = direction[Math.floor(Math.random()*direction.length)];
   return wait;
@@ -204,11 +202,8 @@ function session() {
   verb = getVerb();
 
   text(verb, 50, 50);
-  timer = Math.floor(Math.random()* 45) + 1;
-  
-  while(timer < 20) {
-    timer = Math.floor(Math.random()* 45) + 1;
-  }
+  timer = Math.floor(Math.random()* 25) + 20;
+
 
   action = {'verb': verb, 'timer': timer};
 
